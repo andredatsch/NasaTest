@@ -7,10 +7,11 @@ import javax.ejb.Stateless;
 
 import datsch.andre.service.api.MarsService;
 import datsch.andre.service.bean.Direcao;
-import datsch.andre.service.bean.Robot;
+import datsch.andre.service.bean.Robo;
 
 /**
  * Implementação do serviço de controle do Robo
+ * 
  * @author Andre
  */
 @Stateless
@@ -23,46 +24,47 @@ public class MarsServiceImpl implements MarsService {
 
 	
 	@Override
-	public String processaComando( String command ) throws Exception {
+	public String processaComando( String commando ) throws Exception {
 
-		validaEntrada(command);
+		validaEntrada(commando);
 
-		Robot robot = new Robot();
-		robot.init();
+		Robo robo = new Robo();
 
-		for ( int i = 0; i < command.length(); i++ ) {
+		for ( int i = 0; i < commando.length(); i++ ) {
 
-			char comando = command.charAt(i);
+			char comando = commando.charAt(i);
 			
 			if ( comando == 'M' ) {
 				
-				move(robot);
+				move(robo);
 				
 			} else {
 				
-				turn(robot, comando);
+				virar(robo, comando);
 				
 			}
 
 		}
 
-		return robot.getPosicaoAtual();
+		return robo.getPosicaoAtual();
 	}
 
 	/**
 	 * Identifica e gira o robo para o lado correto
-	 * @param robot Robo
+	 * 
+	 * @param robo Robo
+	 * 
 	 * @param direcao Direção para que o robo deve girar
 	 */
-	private void turn( Robot robot, char direcao ) {
+	private void virar( Robo robo, char direcao ) {
 
 		if ( direcao == 'L' ) {
 			
-			turnLeft(robot);
+			virarEsquerda(robo);
 			
 		} else {
 			
-			turnRight(robot);
+			virarDireita(robo);
 			
 		}
 
@@ -70,51 +72,54 @@ public class MarsServiceImpl implements MarsService {
 
 	/**
 	 * Gira o robo para a esquerda
-	 * @param robot Robo
+	 * 
+	 * @param robo Robo
 	 */
-	private void turnLeft( Robot robot ) {
+	private void virarEsquerda( Robo robo ) {
 
-		robot.setDirecao(Direcao.valueOf(robot.getDirecao().getLeft()));
+		robo.setDirecao(Direcao.valueOf(robo.getDirecao().getEsquerda()));
 
 	}
 
 	/**
 	 * Gira o robo pra direita
-	 * @param robot robo
+	 * 
+	 * @param robo robo
 	 */
-	private void turnRight( Robot robot ) {
+	private void virarDireita( Robo robo ) {
 
-		robot.setDirecao(Direcao.valueOf(robot.getDirecao().getRight()));
+		robo.setDirecao(Direcao.valueOf(robo.getDirecao().getDireita()));
 
 	}
 
 	/**
 	 * Move o robo para a direção que ele está apontado
 	 * 
-	 * @param robot Robo
+	 * @param robo Robo
+	 * 
 	 * @throws Exception
 	 */
-	private void move( Robot robot ) throws Exception {
+	private void move( Robo robo ) throws Exception {
 
-		switch ( robot.getDirecao() ) {
+		switch ( robo.getDirecao() ) {
 
 			case NORTH:
-				move(robot, 0, 1);
+				move(robo, 0, 1);
 
 				break;
 
 			case SOUTH:
-				move(robot, 0, -1);
+				move(robo, 0, -1);
 
 				break;
 
 			case EAST:
-				move(robot, 1, 0);
+				move(robo, 1, 0);
 
 				break;
 
 			case WEST:
-				move(robot, -1, 0);
+				move(robo, -1, 0);
 
 				break;
 
@@ -122,33 +127,33 @@ public class MarsServiceImpl implements MarsService {
 				break;
 		}
 
-		validaPosicao(robot);
+		validaPosicao(robo);
 	}
 
 	/**
 	 * Move o robo a distancia especificada
 	 * 
-	 * @param robot Robo
+	 * @param robo Robo
 	 * @param x Distancia no eixo X
 	 * @param y Distancia no eixo Y
 	 */
-	private void move( Robot robot, int x, int y ) {
+	private void move( Robo robo, int x, int y ) {
 
-		robot.setPosicaoX(robot.getPosicaoX() + x);
-		robot.setPosicaoY(robot.getPosicaoY() + y);
+		robo.setPosicaoX(robo.getPosicaoX() + x);
+		robo.setPosicaoY(robo.getPosicaoY() + y);
 
 	}
 
 	/**
 	 * Valida se o robo esta numa posição valida
 	 * 
-	 * @param robot robo
+	 * @param robo robo
 	 * @throws Exception
 	 */
-	private void validaPosicao( Robot robot ) throws Exception { 
+	private void validaPosicao( Robo robo ) throws Exception { 
 
-		if ( (robot.getPosicaoX() >= tamanho || robot.getPosicaoX() < 0)
-				|| (robot.getPosicaoY() >= tamanho || robot.getPosicaoY() < 0) ) {
+		if ( (robo.getPosicaoX() >= tamanho || robo.getPosicaoX() < 0)
+				|| (robo.getPosicaoY() >= tamanho || robo.getPosicaoY() < 0) ) {
 			throw new Exception("Posição Inválida");
 		}
 

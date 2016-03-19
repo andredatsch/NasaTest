@@ -2,11 +2,21 @@ package datsch.andre.service.bean;
 
 /**
  * Classe representando um robo
+ * 
  * @author Andre
  *
  */
-public class Robot {
+public class Robo {
 
+	/**
+	 * Ao criar um novo robo, configurar ele na posição inicial
+	 */
+	public Robo(){
+		
+		init();
+		
+	}
+	
 	/**
 	 * Inicializa o robo na posição 0, 0, N
 	 */

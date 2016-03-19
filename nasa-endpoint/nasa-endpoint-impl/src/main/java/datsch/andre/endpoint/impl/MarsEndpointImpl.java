@@ -10,6 +10,7 @@ import datsch.andre.service.api.MarsService;
 /**
  * 
  * Implementação do Endpoint de comandos do Robo
+ * 
  * @author Andre
  */
 public class MarsEndpointImpl implements MarsEndpoint {
@@ -18,11 +19,11 @@ public class MarsEndpointImpl implements MarsEndpoint {
 	private MarsService marsService;
 
 	@Override
-	public Response command( String command ) {
+	public Response commando( String commando ) {
 
 		try {
 
-			String retorno = marsService.processaComando(command);
+			String retorno = marsService.processaComando(commando);
 
 			return Response.ok(retorno).build();
 

@@ -9,14 +9,14 @@ import org.junit.Test;
 
 public class MarsTest  {
 
-	private static final String URL = "http://localhost:8080/rest/mars/";
+	private static String path = "mars/";
 
 	@Test
 	public void testCase1( ) {
 
 		String command = "MMRMMRMMRMMR";
 		
-		Retorno retorno = NasaRestClient.post(URL + command);
+		Retorno retorno = NasaRestClient.post(path.concat(command));
 
 		assertEquals(Status.OK.getStatusCode(), retorno.getStatus());
 		assertEquals("0, 0, N", retorno.getRetorno());
@@ -27,7 +27,7 @@ public class MarsTest  {
 		
 		String command = "MML";
 		
-		Retorno retorno = NasaRestClient.post(URL + command);
+		Retorno retorno = NasaRestClient.post(path.concat(command));
 		
 		assertEquals(Status.OK.getStatusCode(), retorno.getStatus());
 		assertEquals("0, 2, W", retorno.getRetorno());
@@ -38,7 +38,7 @@ public class MarsTest  {
 		
 		String command = "AAA";
 		
-		Retorno retorno = NasaRestClient.post(URL + command);
+		Retorno retorno = NasaRestClient.post(path.concat(command));
 		
 		assertEquals(Status.BAD_REQUEST.getStatusCode(), retorno.getStatus());
 	}
@@ -48,7 +48,7 @@ public class MarsTest  {
 		
 		String command = "MMMMMMMMMMMM";
 		
-		Retorno retorno = NasaRestClient.post(URL + command);
+		Retorno retorno = NasaRestClient.post(path.concat(command));
 		
 		assertEquals(Status.BAD_REQUEST.getStatusCode(), retorno.getStatus());
 	}
@@ -58,7 +58,7 @@ public class MarsTest  {
 
 		String command = "MMMMRMMMMRMMMMRMMMMR";
 		
-		Retorno retorno = NasaRestClient.post(URL + command);
+		Retorno retorno = NasaRestClient.post(path.concat(command));
 
 		assertEquals(Status.OK.getStatusCode(), retorno.getStatus());
 		assertEquals("0, 0, N", retorno.getRetorno());

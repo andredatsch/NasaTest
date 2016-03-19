@@ -21,7 +21,7 @@ public interface MarsEndpoint {
 	 * @return a posição final do robo
 	 */
 	@POST
-	@Path( "{command}" )
-	Response command( @PathParam( "command" ) String command);
+	@Path( "{commando}" )
+	Response commando( @PathParam( "commando" ) String command);
 
 }

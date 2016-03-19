@@ -14,9 +14,14 @@ import java.net.URL;
  */
 public class NasaRestClient {
 
+	private static final String URL = "http://localhost:8080/rest/";
+
+	
 	/**
 	 * Realiza uma chamada Post
+	 * 
 	 * @param url url a ser chamada
+	 * 
 	 * @return {@link Retorno}
 	 */
 	public static Retorno post(final String url) {
@@ -25,7 +30,7 @@ public class NasaRestClient {
 
 		try {
 
-			URL obj = new URL(url);
+			URL obj = new URL(URL.concat(url));
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 			con.setRequestMethod("POST");

@@ -2,6 +2,7 @@ package datsch.andre.service.bean;
 
 /**
  * Enum com a direção do robo
+ * 
  * @author Andre
  *
  */
@@ -18,8 +19,8 @@ public enum Direcao {
 	Direcao( String d, String left, String right ) {
 
 		setDirecao(d);
-		setLeft(left);
-		setRight(right);
+		setEsquerda(left);
+		setDireita(right);
 
 	}
 
@@ -31,12 +32,12 @@ public enum Direcao {
 	/**
 	 * Direção a esquerda
 	 */
-	private String left;
+	private String esquerda;
 
 	/**
 	 * Direção a direita
 	 */
-	private String right;
+	private String direita;
 
 	public String getDirecao( ) {
 
@@ -49,24 +50,24 @@ public enum Direcao {
 
 	}
 
-	public String getLeft( ) {
+	public String getEsquerda( ) {
 
-		return left;
+		return esquerda;
 	}
 
-	public void setLeft( String left ) {
+	public void setEsquerda( String esquerda ) {
 
-		this.left = left;
+		this.esquerda = esquerda;
 	}
 
-	public String getRight( ) {
+	public String getDireita( ) {
 
-		return right;
+		return direita;
 	}
 
-	public void setRight( String right ) {
+	public void setDireita( String direita ) {
 
-		this.right = right;
+		this.direita = direita;
 	}
 
 }

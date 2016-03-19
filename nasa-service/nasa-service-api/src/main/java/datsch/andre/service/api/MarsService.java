@@ -10,10 +10,11 @@ public interface MarsService {
 
 	/**
 	 * Processa os comandos do robo
-	 * @param command Comando a ser processado
+	 * 
+	 * @param commando Comando a ser processado
 	 * @return posição final do robo
 	 * @throws Exception
 	 */
-	String processaComando( String command ) throws Exception;
+	String processaComando( String commando ) throws Exception;
 
 }
